@@ -1,4 +1,4 @@
-//Question 6: 
+//Day 6: 
 //Write a generalised code for the following pattern 
 //(example is for n=4) 
 //A B C D
