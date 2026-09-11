@@ -19,34 +19,40 @@
 //These are the sample input. Make generalized program
 
 #include <stdio.h>
+
 int main()
 {
-    int n;
-    printf("Enter the size of array: ");
-    scanf("%d",&n);
+    int n, i;
+
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+
     int arr[n];
-    printf("Enter the elements of the array: ");
-    for(int i=0; i<n; i++)
+
+    printf("Enter sorted array elements:\n");
+    for(i = 0; i < n; i++)
     {
-        scanf("%d",&arr[i]);
+        scanf("%d", &arr[i]);
     }
-    for(int i=0;i<n;i++)
+
+    int low = 0;
+    int high = n - 1;
+
+    while(low < high)
     {
-        if(i==0 && arr[i]!=arr[i+1])
-        {
-            printf("The single element is: %d",arr[i]);
-            break;
-        }
-        else if(i==n-1 && arr[i]!=arr[i-1])
-        {
-            printf("The single element is: %d",arr[i]);
-            break;
-        }
-        else if(arr[i]!=arr[i-1] && arr[i]!=arr[i+1])
-        {
-            printf("The single element is: %d",arr[i]);
-            break;
-        }
+        int mid = (low + high) / 2;
+
+        // Make mid even
+        if(mid % 2 == 1)
+            mid--;
+
+        if(arr[mid] == arr[mid + 1])
+            low = mid + 2;
+        else
+            high = mid;
     }
+
+    printf("Single element is: %d", arr[low]);
+
     return 0;
 }
