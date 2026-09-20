@@ -1,43 +1,41 @@
 //Day 16
 //check whether a password is secure according to 5 conditions.
 
-#include <iostream>
-#include <string>
-using namespace std;
+#include <stdio.h>
+#include <string.h>
 
 int main() {
-    int T;
-    cin >> T;
+    char s[100];
+    int lower = 0, upper = 0, digit = 0, special = 0;
+    int i, n;
 
-    while (T--) {
-        string s;
-        cin >> s;
+    scanf("%s", s);
 
-        bool lower = false, upper = false, digit = false, special = false;
+    n = strlen(s);
 
-        for (int i = 0; i < s.length(); i++) {
+    for (i = 0; i < n; i++) {
 
-            if (s[i] >= 'a' && s[i] <= 'z')
-                lower = true;
+        if (s[i] >= 'a' && s[i] <= 'z')
+            lower = 1;
 
-            if (i > 0 && i < s.length() - 1) {
-                if (s[i] >= 'A' && s[i] <= 'Z')
-                    upper = true;
+        if (i > 0 && i < n - 1) {
 
-                if (s[i] >= '0' && s[i] <= '9')
-                    digit = true;
+            if (s[i] >= 'A' && s[i] <= 'Z')
+                upper = 1;
 
-                if (s[i] == '@' || s[i] == '#' || s[i] == '%' ||
-                    s[i] == '&' || s[i] == '?')
-                    special = true;
-            }
+            if (s[i] >= '0' && s[i] <= '9')
+                digit = 1;
+
+            if (s[i] == '@' || s[i] == '#' || s[i] == '%' ||
+                s[i] == '&' || s[i] == '?')
+                special = 1;
         }
-
-        if (s.length() >= 10 && lower && upper && digit && special)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
     }
+
+    if (n >= 10 && lower && upper && digit && special)
+        printf("YES");
+    else
+        printf("NO");
 
     return 0;
 }
